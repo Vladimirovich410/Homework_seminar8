@@ -168,72 +168,130 @@
 // 15 18
 
 
-Console.WriteLine("Введите колличество строк массива 1");
-int rows1 = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество строк массива 1");
+// int rows1 = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите колличество столбцов массива 1");
-int colums1 = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество столбцов массива 1");
+// int colums1 = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите колличество строк массива 2");
-int rows2 = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество строк массива 2");
+// int rows2 = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите колличество столбцов массива 2");
-int colums2 = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество столбцов массива 2");
+// int colums2 = Convert.ToInt32(Console.ReadLine());
 
-int [,] arr1 = new int [rows1, colums1];
-int [,] arr2 = new int [rows2, colums2];
-int [,] ResultMatrix = new int [rows1, colums2];
-if(colums1 != rows2)
-{
-    Console.WriteLine("Эти матрицы умножить нельзя!");
-}
-else
-{
-    FillArray(arr1);
-    PrintArray(arr1);
-    FillArray(arr2);
-    PrintArray(arr2);
-    MultiplyMatrix(arr1, arr2, ResultMatrix);
-    PrintArray(ResultMatrix);
-}
+// int [,] arr1 = new int [rows1, colums1];
+// int [,] arr2 = new int [rows2, colums2];
+// int [,] ResultMatrix = new int [rows1, colums2];
+// if(colums1 != rows2)
+// {
+//     Console.WriteLine("Эти матрицы умножить нельзя!");
+// }
+// else
+// {
+//     FillArray(arr1);
+//     PrintArray(arr1);
+//     FillArray(arr2);
+//     PrintArray(arr2);
+//     MultiplyMatrix(arr1, arr2, ResultMatrix);
+//     PrintArray(ResultMatrix);
+// }
 
 
-void FillArray(int [,] array)
+// void FillArray(int [,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             array[i, j] = new Random().Next(1, 10);
+//         }
+//     }
+// }
+
+// void PrintArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write(array[i, j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+//     Console.WriteLine();
+// }
+
+// void MultiplyMatrix(int [,] array1, int [,] array2, int [,] Res)
+// {
+//     for (int i = 0; i < Res.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < Res.GetLength(1); j++)
+//         {
+//             int result = 0;
+//             for (int k = 0; k < array2.GetLength(0); k++)
+//             {
+//                 result = array1[i,k] * array2[k,j] + result;
+//             }
+//             Res[i,j] = result;
+//         }
+//     }
+// }
+
+// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся 
+// двузначных чисел. Напишите программу, которая будет построчно 
+// выводить массив, добавляя индексы каждого элемента.
+// Массив размером 2 x 2 x 2
+// 66(0,0,0) 25(0,1,0)
+// 34(1,0,0) 41(1,1,0)
+// 27(0,0,1) 90(0,1,1)
+// 26(1,0,1) 55(1,1,1)
+
+
+Console.WriteLine("Введите колличество строк массива");
+int rows = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите колличество столбцов массива");
+int colums = Convert.ToInt32(Console.ReadLine());
+
+
+Console.WriteLine("Задайте глубину трёхмерного массива");
+int depth = Convert.ToInt32(Console.ReadLine());
+
+int [,,] arr = new int [rows, colums, depth];
+
+void FillArray(int [,,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = new Random().Next(1, 10);
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                array[i, j, k] = new Random().Next(10, 100);
+            }
         }
     }
 }
 
-void PrintArray(int[,] array)
+void PrintArray(int[,,] array)
 {
-    for (int i = 0; i < array.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(2); i++)
     {
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(0); j++)
         {
-            Console.Write(array[i, j] + " ");
-        }
+            for (int k = 0; k < array.GetLength(1); k++)
+            {
+                Console.Write(array[j,k,i]+" "+"("+j+", "+k+", "+i+")"+" ");
+            }
         Console.WriteLine();
+        }
     }
+    
     Console.WriteLine();
 }
 
-void MultiplyMatrix(int [,] array1, int [,] array2, int [,] Res)
-{
-    for (int i = 0; i < Res.GetLength(0); i++)
-    {
-        for (int j = 0; j < Res.GetLength(1); j++)
-        {
-            int result = 0;
-            for (int k = 0; k < array2.GetLength(0); k++)
-            {
-                result = array1[i,k] * array2[k,j] + result;
-            }
-            Res[i,j] = result;
-        }
-    }
-}
+FillArray(arr);
+PrintArray(arr);
+
+
