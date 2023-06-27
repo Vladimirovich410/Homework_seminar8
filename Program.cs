@@ -233,7 +233,7 @@ void MultiplyMatrix(int [,] array1, int [,] array2, int [,] Res)
             {
                 result = array1[i,k] * array2[k,j] + result;
             }
-            ResultMatrix[i,j] = result;
+            Res[i,j] = result;
         }
     }
 }
