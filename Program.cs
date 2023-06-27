@@ -305,9 +305,9 @@
 // 10 09 08 07
 
 
-int[,] matrix = new int[4, 4];
+int[,] array = new int[4, 4];
 int num = 1;
-void SpiralMatrix(int[,] array, int arg)
+void FillingSpiralArr(int[,] array, int arg)
 {
     int i = 0;
     int j = 0;
@@ -326,7 +326,7 @@ void SpiralMatrix(int[,] array, int arg)
     }
 }
 
-void PrintResultArray(int[,] array)
+void PrintArray(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -338,7 +338,7 @@ void PrintResultArray(int[,] array)
     }
 }
 
-SpiralMatrix(matrix, num);
-PrintResultArray(matrix);
+FillingSpiralArr(array, num);
+PrintArray(array);
 
 
