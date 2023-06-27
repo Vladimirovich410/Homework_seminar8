@@ -248,50 +248,97 @@
 // 26(1,0,1) 55(1,1,1)
 
 
-Console.WriteLine("Введите колличество строк массива");
-int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество строк массива");
+// int rows = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите колличество столбцов массива");
-int colums = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество столбцов массива");
+// int colums = Convert.ToInt32(Console.ReadLine());
 
 
-Console.WriteLine("Задайте глубину трёхмерного массива");
-int depth = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Задайте глубину трёхмерного массива");
+// int depth = Convert.ToInt32(Console.ReadLine());
 
-int [,,] arr = new int [rows, colums, depth];
+// int [,,] arr = new int [rows, colums, depth];
 
-void FillArray(int [,,] array)
+// void FillArray(int [,,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(2); k++)
+//             {
+//                 array[i, j, k] = new Random().Next(10, 100);
+//             }
+//         }
+//     }
+// }
+
+// void PrintArray(int[,,] array)
+// {
+//     for (int i = 0; i < array.GetLength(2); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(0); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(1); k++)
+//             {
+//                 Console.Write(array[j,k,i]+" "+"("+j+", "+k+", "+i+")"+" ");
+//             }
+//         Console.WriteLine();
+//         }
+//     }
+
+//     Console.WriteLine();
+// }
+
+// FillArray(arr);
+// PrintArray(arr);
+
+
+
+// Задача 62. Напишите программу, которая заполнит 
+// спирально массив 4 на 4.
+// Например, на выходе получается вот такой массив:
+// 01 02 03 04
+// 12 13 14 05
+// 11 16 15 06
+// 10 09 08 07
+
+
+int[,] matrix = new int[4, 4];
+int num = 1;
+void SpiralMatrix(int[,] array, int arg)
+{
+    int i = 0;
+    int j = 0;
+    while (arg <= 16)
+    {
+        array[i, j] = arg;
+        if (i <= j + 1 && i + j < 3)
+            ++j;
+        else if (i < j && i + j >= 3)
+            ++i;
+        else if (i >= j && i + j > 3)
+            --j;
+        else
+            --i;
+        arg++;
+    }
+}
+
+void PrintResultArray(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < array.GetLength(2); k++)
-            {
-                array[i, j, k] = new Random().Next(10, 100);
-            }
+            Console.Write($"{array[i, j].ToString("D2")} ");
         }
+        Console.WriteLine("");
     }
 }
 
-void PrintArray(int[,,] array)
-{
-    for (int i = 0; i < array.GetLength(2); i++)
-    {
-        for (int j = 0; j < array.GetLength(0); j++)
-        {
-            for (int k = 0; k < array.GetLength(1); k++)
-            {
-                Console.Write(array[j,k,i]+" "+"("+j+", "+k+", "+i+")"+" ");
-            }
-        Console.WriteLine();
-        }
-    }
-    
-    Console.WriteLine();
-}
-
-FillArray(arr);
-PrintArray(arr);
+SpiralMatrix(matrix, num);
+PrintResultArray(matrix);
 
 
