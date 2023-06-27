@@ -89,13 +89,114 @@
 // суммой элементов: 1 строка
 
 
-Console.WriteLine("Введите колличество строк массива");
-int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество строк массива");
+// int rows = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Введите колличество столбцов массива");
-int colums = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Введите колличество столбцов массива");
+// int colums = Convert.ToInt32(Console.ReadLine());
 
-int [,] arr = new int [rows, colums];
+// int [,] arr = new int [rows, colums];
+
+// void FillArray(int [,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             array[i, j] = new Random().Next(1, 10);
+//         }
+//     }
+// }
+
+// void PrintArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write(array[i, j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+//     Console.WriteLine();
+// }
+
+// int [] sumString = new int[arr.GetLength(0)];
+// int min = int.MaxValue;
+// int minIndex = 0;
+
+
+// void Sum(int[,] array, int [] array1)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         int sum = 0;
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             sum = sum + array[i, j];
+//         }
+//         array1[i] = sum;
+//     }
+// }
+
+// void MinimunSum(int[] array)
+// {
+//     for (int i = 0; i < array.Length; i++)
+//     {
+//         if(array[i] < min)
+//         {
+//             min = array[i];
+//             minIndex = i;
+//         }
+//     }
+//     Console.WriteLine($"Строка с наименьшей суммой элементов {minIndex}");
+// }
+
+// FillArray(arr);
+// PrintArray(arr);
+// Sum(arr, sumString);
+// MinimunSum(sumString);
+
+
+// Задача 58: Задайте две матрицы. Напишите программу, 
+// которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// 2 4 | 3 4
+// 3 2 | 3 3
+// Результирующая матрица будет:
+// 18 20
+// 15 18
+
+
+Console.WriteLine("Введите колличество строк массива 1");
+int rows1 = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите колличество столбцов массива 1");
+int colums1 = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите колличество строк массива 2");
+int rows2 = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите колличество столбцов массива 2");
+int colums2 = Convert.ToInt32(Console.ReadLine());
+
+int [,] arr1 = new int [rows1, colums1];
+int [,] arr2 = new int [rows2, colums2];
+int [,] ResultMatrix = new int [rows1, colums2];
+if(colums1 != rows2)
+{
+    Console.WriteLine("Эти матрицы умножить нельзя!");
+}
+else
+{
+    FillArray(arr1);
+    PrintArray(arr1);
+    FillArray(arr2);
+    PrintArray(arr2);
+    MultiplyMatrix(arr1, arr2, ResultMatrix);
+    PrintArray(ResultMatrix);
+}
+
 
 void FillArray(int [,] array)
 {
@@ -121,38 +222,18 @@ void PrintArray(int[,] array)
     Console.WriteLine();
 }
 
-int [] sumString = new int[arr.GetLength(0)];
-int min = int.MaxValue;
-int minIndex = 0;
-
-
-void Sum(int[,] array, int [] array1)
+void MultiplyMatrix(int [,] array1, int [,] array2, int [,] Res)
 {
-    for (int i = 0; i < array.GetLength(0); i++)
+    for (int i = 0; i < Res.GetLength(0); i++)
     {
-        int sum = 0;
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < Res.GetLength(1); j++)
         {
-            sum = sum + array[i, j];
-        }
-        array1[i] = sum;
-    }
-}
-
-void MinimunSum(int[] array)
-{
-    for (int i = 0; i < array.Length; i++)
-    {
-        if(array[i] < min)
-        {
-            min = array[i];
-            minIndex = i;
+            int result = 0;
+            for (int k = 0; k < array2.GetLength(0); k++)
+            {
+                result = array1[i,k] * array2[k,j] + result;
+            }
+            ResultMatrix[i,j] = result;
         }
     }
-    Console.WriteLine($"Строка с наименьшей суммой элементов {minIndex}");
 }
-
-FillArray(arr);
-PrintArray(arr);
-Sum(arr, sumString);
-MinimunSum(sumString);
